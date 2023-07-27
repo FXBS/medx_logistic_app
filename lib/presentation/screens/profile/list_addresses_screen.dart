@@ -42,6 +42,7 @@ class _ListAddressesScreenState extends State<ListAddressesScreen> with WidgetsB
 
   void accessLocation( PermissionStatus status ) {
 
+
     switch ( status ){
       
       case PermissionStatus.granted:
@@ -96,13 +97,30 @@ class _ListAddressesScreenState extends State<ListAddressesScreen> with WidgetsB
             ),
           ],
         ),
-        body: FutureBuilder<List<ListAddress>>(
-          future: userServices.getAddresses(),
-          builder: (context, snapshot) 
-            => (!snapshot.hasData)
-              ? const ShimmerFrave()
-              : _ListAddresses(listAddress: snapshot.data!)
-        ),
+        // body: FutureBuilder<List<ListAddress>>(
+        //   future: userServices.getAddresses(),
+        //   builder: (context, snapshot)
+        //     => (!snapshot.hasData)
+        //       ? const ShimmerFrave()
+        //       : _ListAddresses(listAddress: snapshot.data!)
+        // ),
+
+          body: FutureBuilder<List<ListAddress>>(
+            future: userServices.getAddresses(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const ShimmerFrave();
+              } else if (snapshot.hasData) {
+                final listAddress = snapshot.data!;
+                print("List of addresses length: ${listAddress.length}");
+                return _ListAddresses(listAddress: listAddress);
+              } else {
+                print("Error fetching addresses: ${snapshot.error}");
+                return _WithoutListAddress();
+              }
+            },
+          )
+
       ),
     );
   }

@@ -25,14 +25,14 @@ class MapDeliveryScreen extends StatefulWidget {
 class _MapDeliveryScreenState extends State<MapDeliveryScreen> with WidgetsBindingObserver {
   
   late MylocationmapBloc mylocationmapBloc;
-  late MapdeliveryBloc mapDeliveryBloc;
+  // late MapdeliveryBloc mapDeliveryBloc;
   
   @override
   void initState() {
     mylocationmapBloc = BlocProvider.of<MylocationmapBloc>(context);
-    mapDeliveryBloc = BlocProvider.of<MapdeliveryBloc>(context);
+    // mapDeliveryBloc = BlocProvider.of<MapdeliveryBloc>(context);
     mylocationmapBloc.initialLocation();
-    mapDeliveryBloc.initSocketDelivery();
+    // mapDeliveryBloc.initSocketDelivery();
     WidgetsBinding.instance.addObserver(this);
    
     super.initState();
@@ -41,7 +41,7 @@ class _MapDeliveryScreenState extends State<MapDeliveryScreen> with WidgetsBindi
   @override
   void dispose() {
     mylocationmapBloc.cancelLocation();
-    mapDeliveryBloc.disconectSocket();
+    // mapDeliveryBloc.disconectSocket();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -226,15 +226,15 @@ class _MapDelivery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   
-    final mapDelivery = BlocProvider.of<MapdeliveryBloc>(context);
+    // final mapDelivery = BlocProvider.of<MapdeliveryBloc>(context);
     final myLocationDeliveryBloc = BlocProvider.of<MylocationmapBloc>(context);
     
     return BlocBuilder<MylocationmapBloc, MylocationmapState>(
       builder: (_, state){
 
         if( state.location != null ){
-          mapDelivery.add( OnMarkertsDeliveryEvent( state.location!, LatLng(double.parse(order.latitude), double.parse(order.longitude))) );
-          mapDelivery.add( OnEmitLocationDeliveryEvent(order.orderId.toString(), myLocationDeliveryBloc.state.location!) );
+          // mapDelivery.add( OnMarkertsDeliveryEvent( state.location!, LatLng(double.parse(order.latitude), double.parse(order.longitude))) );
+          // mapDelivery.add( OnEmitLocationDeliveryEvent(order.orderId.toString(), myLocationDeliveryBloc.state.location!) );
         } 
 
         return  ( state.existsLocation ) 
@@ -243,9 +243,9 @@ class _MapDelivery extends StatelessWidget {
               zoomControlsEnabled: false,
               myLocationEnabled: false,
               myLocationButtonEnabled: false,
-              onMapCreated: mapDelivery.initMapDeliveryFrave,
-              markers: mapDelivery.state.markers.values.toSet(),
-              polylines: mapDelivery.state.polyline!.values.toSet(),
+              // onMapCreated: mapDelivery.initMapDeliveryFrave,
+              // markers: mapDelivery.state.markers.values.toSet(),
+              // polylines: mapDelivery.state.polyline!.values.toSet(),
             )
           : Center(
               child: const TextCustom(text: 'Locating...'),
@@ -261,7 +261,7 @@ class _BtnLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    final mapDeliveryBloc = BlocProvider.of<MapdeliveryBloc>(context);
+    // final mapDeliveryBloc = BlocProvider.of<MapdeliveryBloc>(context);
     final locationBloc = BlocProvider.of<MylocationmapBloc>(context);
 
     return SafeArea(
@@ -275,10 +275,10 @@ class _BtnLocation extends StatelessWidget {
         child: CircleAvatar(
           backgroundColor: Colors.white,
           maxRadius: 25,
-          child: IconButton(
-            icon: Icon(Icons.my_location_rounded, color: ColorsFrave.primaryColor ),
-            onPressed: () => mapDeliveryBloc.moveCamareLocation(locationBloc.state.location!),
-          ),
+          // child: IconButton(
+          //   icon: Icon(Icons.my_location_rounded, color: ColorsFrave.primaryColor ),
+          //   // onPressed: () => mapDeliveryBloc.moveCamareLocation(locationBloc.state.location!),
+          // ),
         ),
       ),
     );

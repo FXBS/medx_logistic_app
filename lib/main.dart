@@ -11,7 +11,7 @@ PushNotification pushNotification = PushNotification();
 
 Future<void> _firebaseMessagingBackground( RemoteMessage message ) async {
 
-  await Firebase.initializeApp();
+  //await Firebase.initializeApp();
 
 }
 
@@ -21,6 +21,7 @@ void main() async {
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackground);
   pushNotification.initNotifacion();
+
   runApp(MyApp());
 }
  
@@ -37,6 +38,13 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     pushNotification.onMessagingListener();
     super.initState();
+
+    // Fetch Firebase Messaging Token here
+    FirebaseMessaging.instance.getToken().then((token) {
+      print("Firebase Messaging Token: $token");
+    }).catchError((error) {
+      print("Error getting Firebase Messaging token: $error");
+    });
   }
 
   @override
@@ -55,12 +63,12 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => PaymentsBloc()),
         BlocProvider(create: (context) => OrdersBloc()),
         BlocProvider(create: (context) => DeliveryBloc()),
-        BlocProvider(create: (context) => MapdeliveryBloc()),
+        // BlocProvider(create: (context) => MapdeliveryBloc()),
         BlocProvider(create: (context) => MapclientBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Food - Fraved',
+        title: 'Med-X - Logistic',
         home: CheckingLoginScreen(),
       ),
     );

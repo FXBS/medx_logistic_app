@@ -26,10 +26,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     final userBloc = BlocProvider.of<UserBloc>(context).state.user!;
 
-    _nameController = TextEditingController(text: userBloc.firstName);
-    _lastNameController = TextEditingController(text: userBloc.lastName);
-    _phoneController = TextEditingController(text: userBloc.phone);
-    _emailController = TextEditingController(text: userBloc.email );    
+      _nameController = TextEditingController(text: userBloc.firstName);
+      _lastNameController = TextEditingController(text: userBloc.lastName);
+      _phoneController = TextEditingController(text: userBloc.phone);
+      _emailController = TextEditingController(text: userBloc.email);
+
+
   }
 
 

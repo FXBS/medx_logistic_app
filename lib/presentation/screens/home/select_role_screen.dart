@@ -26,8 +26,8 @@ class SelectRoleScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  TextCustom(text: 'Frave ', fontSize: 25, color: ColorsFrave.primaryColor, fontWeight: FontWeight.w500 ),
-                  TextCustom(text: 'Food', fontSize: 25, color: ColorsFrave.secundaryColor, fontWeight: FontWeight.w500 ),
+                  TextCustom(text: 'Med-X ', fontSize: 25, color: ColorsFrave.primaryColor, fontWeight: FontWeight.w500 ),
+                  TextCustom(text: 'Logistics', fontSize: 25, color: ColorsFrave.secundaryColor, fontWeight: FontWeight.w500 ),
                 ],
               ),
               const SizedBox(height: 20.0),
@@ -36,7 +36,7 @@ class SelectRoleScreen extends StatelessWidget {
               ( authBloc.user!.rolId == 1) 
                 ? _BtnRol(
                 svg: 'Assets/svg/restaurante.svg',
-                text: 'Restaurant',
+                text: 'Med-X Admin',
                 color1: ColorsFrave.primaryColor.withOpacity(.2),
                 color2: Colors.greenAccent.withOpacity(.1),
                 onPressed: () => Navigator.pushAndRemoveUntil(context, routeFrave(page: AdminHomeScreen()), (route) => false),
@@ -44,7 +44,7 @@ class SelectRoleScreen extends StatelessWidget {
               (authBloc.user!.rolId == 1 || authBloc.user!.rolId == 3 )
                 ? _BtnRol(
                 svg: 'Assets/svg/bussiness-man.svg',
-                text: 'Client',
+                text: 'Customer',
                 color1: Color(0xffFE6488).withOpacity(.2),
                 color2: Colors.amber.withOpacity(.1),
                 onPressed: () => Navigator.pushReplacement(context, routeFrave(page: ClientHomeScreen())),

@@ -9,6 +9,8 @@ import 'package:restaurant/presentation/screens/intro/intro_screen.dart';
 import 'package:restaurant/presentation/screens/login/forgot_password_screen.dart';
 import 'package:restaurant/presentation/themes/colors_frave.dart';
 
+import '../home/banner_screen.dart';
+
 class LoginScreen extends StatefulWidget {
 
   @override
@@ -29,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _passwordController = TextEditingController();
 
     super.initState();
+
   }
 
 
@@ -50,11 +53,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) async {
-        
+
         if( state is LoadingAuthState ){
 
           modalLoading(context);
-        
+
         } else if ( state is FailureAuthState ){
 
           Navigator.pop(context);
@@ -67,12 +70,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
           if( state.rolId == '1' || state.rolId == '3' ){
 
-            Navigator.pushAndRemoveUntil(context, routeFrave(page: SelectRoleScreen()), (route) => false);
-          
+            Navigator.pushAndRemoveUntil(context, routeFrave(page: BannerScreen()), (route) => false);
+
           } else if ( state.rolId == '2' ){
 
             Navigator.pushAndRemoveUntil(context, routeFrave(page: ClientHomeScreen()), (route) => false);
-        
+
           }
         }
       },
@@ -105,15 +108,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Row(
                         children: const [
-                          TextCustom(text: 'Frave ', color: ColorsFrave.primaryColor, fontWeight: FontWeight.w500 ),
-                          TextCustom(text: 'Food', color: Colors.black87, fontWeight: FontWeight.w500 ),
+                          TextCustom(text: 'Med-X ', color: ColorsFrave.primaryColor, fontWeight: FontWeight.w500 ),
+                          TextCustom(text: 'Delivery', color: Colors.black87, fontWeight: FontWeight.w500 ),
                         ],
                       )
                     ],
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                Image.asset('Assets/Logo/logo-black.png', height: 150 ),
+                Image.asset('Assets/Logo/logo.png', height: 150 ),
                 const SizedBox(height: 30.0),
                 Container(
                   alignment: Alignment.center,
@@ -129,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 5.0),
                 FormFieldFrave(
                   controller: _emailController,
-                  hintText: 'email@frave.com',
+                  hintText: 'email@med-x.in',
                   keyboardType: TextInputType.emailAddress,
                   validator: validatedEmail,
                 ),
@@ -155,12 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: 'Login',
                   fontSize: 21,
                   height: 50,
+                  color: ColorsFrave.primaryColor,
                   fontWeight: FontWeight.w500,
                   onPressed: () {
                     if( _keyForm.currentState!.validate() ){
-    
+
                       authBloc.add( LoginEvent(_emailController.text, _passwordController.text));
-    
+
                     }
                   },
                 )
@@ -171,4 +175,5 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
+
+  }

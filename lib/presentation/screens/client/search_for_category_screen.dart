@@ -73,7 +73,7 @@ class ListProducts extends StatelessWidget {
                     Container(
                       child: Hero(
                         tag: listProduct[i].id, 
-                        child: Image.network('http://192.168.1.35:7070/' + listProduct[i].picture , height: 150)
+                        child: Image.network('http://192.168.1.7:7071/' + listProduct[i].picture , height: 150)
                       ),
                     ),
                     TextCustom(text: listProduct[i].nameProduct , textOverflow: TextOverflow.ellipsis, fontWeight: FontWeight.w500, color: ColorsFrave.primaryColor, fontSize: 19 ),

@@ -19,8 +19,8 @@ class IntroScreen extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: const [
-            TextCustom(text: 'Frave ', color:  Color(0xff0C6CF2), fontWeight: FontWeight.w500, fontSize: 25),
-            TextCustom(text: 'Food', fontSize: 25, fontWeight: FontWeight.w500),
+            TextCustom(text: 'Med-X ', color:  Color(0xff0C6CF2), fontWeight: FontWeight.w500, fontSize: 25),
+            TextCustom(text: 'Logistics', fontSize: 25, fontWeight: FontWeight.w500),
           ],
         ),
         backgroundColor: Colors.white,

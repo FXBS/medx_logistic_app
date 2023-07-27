@@ -89,7 +89,7 @@ class _CheckingLoginScreenState extends State<CheckingLoginScreen> with TickerPr
                     child: SizedBox(
                       height: 200,
                       width: 200,
-                      child: Image.asset('Assets/Logo/logo-white.png'),
+                      child: Image.asset('Assets/Logo/logo.png'),
                     ),
                   ),
               ),

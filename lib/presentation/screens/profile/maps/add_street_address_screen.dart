@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:restaurant/domain/bloc/blocs.dart';
@@ -22,6 +23,13 @@ class _AddStreetAddressScreenState extends State<AddStreetAddressScreen> {
 
   late TextEditingController _streetAddressController;
   final _keyForm = GlobalKey<FormState>();
+
+  // Add these two variables for hardcoded latitude and longitude
+  double fixedLatitude = 22.62108355415915;
+  double fixedLongitude = 88.46468679070688;
+
+
+
 
   @override
   void initState() { 
@@ -83,7 +91,8 @@ class _AddStreetAddressScreenState extends State<AddStreetAddressScreen> {
                       OnAddNewAddressEvent( 
                         _streetAddressController.text.trim(), 
                         myLocationBloc.state.addressName,
-                        myLocationBloc.state.locationCentral!
+                        LatLng(fixedLatitude, fixedLongitude),
+                        // myLocationBloc.state.locationCentral!
                       )
                     );
                   }
@@ -132,9 +141,10 @@ class _AddStreetAddressScreenState extends State<AddStreetAddressScreen> {
                         borderRadius: BorderRadius.circular(5.0)
                       ),
                       child: BlocBuilder<MylocationmapBloc, MylocationmapState>(
-                        builder: (_, state) 
+                        builder: (_, state)
                           => TextCustom(text: state.addressName)
                       ),
+
                     ),
                   ),
                   SizedBox(height: 5.0),
