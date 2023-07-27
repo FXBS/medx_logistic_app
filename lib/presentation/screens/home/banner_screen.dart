@@ -16,30 +16,32 @@ class BannerScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Carousel Slider
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 300.0,
-              enableInfiniteScroll: false,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              pauseAutoPlayOnTouch: true,
+          // Wrap the CarouselSlider with an Expanded widget
+          Expanded(
+            child: CarouselSlider(
+              options: CarouselOptions(
+                height: 500.0, // You can adjust the height as needed
+                enableInfiniteScroll: false,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                pauseAutoPlayOnTouch: true,
+              ),
+              items: imageUrls.map((url) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      child: Image.asset(
+                        url,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
             ),
-            items: imageUrls.map((url) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
-                    child: Image.asset(
-                      url,
-                      fit: BoxFit.cover,
-                    ),
-                  );
-                },
-              );
-            }).toList(),
           ),
 
           // Add any other widgets or buttons as needed below the carousel
