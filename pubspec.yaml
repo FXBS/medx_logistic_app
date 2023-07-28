@@ -35,6 +35,8 @@ dependencies:
   firebase_messaging: ^14.6.5
   firebase_core: ^2.15.0
   flutter_local_notifications: ^14.0.0+1
+  video_player: ^2.2.5
+  chewie: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +52,7 @@ flutter:
     - Assets/Logo/
     - Assets/svg/
     - Assets/Banner/
+    - Assets/splash_video.mp4
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
