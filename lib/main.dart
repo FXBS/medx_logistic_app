@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restaurant/domain/bloc/blocs.dart';
 import 'package:restaurant/domain/services/push_notification.dart';
+import 'package:restaurant/presentation/screens/home/banner_screen.dart';
 import 'package:restaurant/presentation/screens/intro/checking_login_screen.dart';
  
 PushNotification pushNotification = PushNotification();
@@ -69,7 +70,8 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Med-X - Logistic',
-        home: CheckingLoginScreen(),
+        // home: CheckingLoginScreen(),
+        home: BannerScreen(),
       ),
     );
   }

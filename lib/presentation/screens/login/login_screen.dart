@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
           if( state.rolId == '1' || state.rolId == '3' ){
 
-            Navigator.pushAndRemoveUntil(context, routeFrave(page: BannerScreen()), (route) => false);
+            Navigator.pushAndRemoveUntil(context, routeFrave(page: SelectRoleScreen()), (route) => false);
 
           } else if ( state.rolId == '2' ){
 
