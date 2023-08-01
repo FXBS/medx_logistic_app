@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-77:12
-INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-77:12
-INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-77:12
-INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-77:12
-MERGED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-77:12
+ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-74:12
+INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-74:12
+INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-74:12
+INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-74:12
+MERGED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-74:12
 MERGED from [:firebase_messaging] C:\Users\user\Desktop\logistic\Flutter-Delivery-App\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-50:12
 MERGED from [:firebase_core] C:\Users\user\Desktop\logistic\Flutter-Delivery-App\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:geolocator_android] C:\Users\user\Desktop\logistic\Flutter-Delivery-App\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
@@ -88,11 +88,11 @@ INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\sr
 		INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-77:12
+		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-74:12
 		INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-77:12
+		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:1-74:12
 		INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:1:11-69
@@ -175,7 +175,7 @@ ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\m
 	android:name
 		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:31:22-62
 application
-ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:33:4-76:19
+ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:33:4-73:19
 MERGED from [:firebase_messaging] C:\Users\user\Desktop\logistic\Flutter-Delivery-App\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:15:5-48:19
 MERGED from [:firebase_messaging] C:\Users\user\Desktop\logistic\Flutter-Delivery-App\build\firebase_messaging\intermediates\merged_manifest\debug\AndroidManifest.xml:15:5-48:19
 MERGED from [:firebase_core] C:\Users\user\Desktop\logistic\Flutter-Delivery-App\build\firebase_core\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-15:19
@@ -245,7 +245,7 @@ ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\m
 	android:name
 		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:38:20-65
 activity#com.fraved.restaurant.MainActivity
-ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:41:9-70:20
+ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:41:9-67:20
 	android:launchMode
 		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:43:13-43
 	android:hardwareAccelerated
@@ -265,21 +265,21 @@ ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\m
 	android:name
 		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:54:15-70
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:66:13-69:29
+ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:63:13-66:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:67:17-68
+ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:64:17-68
 	android:name
-		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:67:25-66
+		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:64:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:68:17-76
+ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:65:17-76
 	android:name
-		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:68:27-74
+		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:65:27-74
 meta-data#flutterEmbedding
-ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:73:9-75:33
+ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:70:9-72:33
 	android:value
-		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:75:13-30
+		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:72:13-30
 	android:name
-		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:74:13-44
+		ADDED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml:71:13-44
 uses-sdk
 INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\user\Desktop\logistic\Flutter-Delivery-App\android\app\src\main\AndroidManifest.xml

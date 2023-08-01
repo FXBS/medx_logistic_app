@@ -125,16 +125,43 @@ class UserServices {
   }
 
 
-  Future<List<ListAddress>> getAddresses() async {
+  // Future<List<ListAddress>> getAddresses() async {
+  //
+  //   final token = await secureStorage.readToken();
+  //
+  //   final response = await http.get(Uri.parse('${Environment.endpointApi}/get-addresses'),
+  //     headers: { 'Accept' : 'application/json', 'xx-token' : token! }
+  //   );
+  //   print("Address API Response: ${response.body}");
+  //
+  //   return AddressesResponse.fromJson(jsonDecode(response.body)).listAddresses;
+  // }
 
+  Future<List<ListAddress>> getAddresses() async {
     final token = await secureStorage.readToken();
 
-    final response = await http.get(Uri.parse('${Environment.endpointApi}/get-addresses'),
-      headers: { 'Accept' : 'application/json', 'xx-token' : token! }
+    final response = await http.get(
+      Uri.parse('${Environment.endpointApi}/get-addresses'),
+      headers: {'Accept': 'application/json', 'xx-token': token!},
     );
+    print("Address API Response: ${response.body}");
 
-    return AddressesResponse.fromJson(jsonDecode(response.body)).listAddresses;
+    final jsonResponse = json.decode(response.body);
+
+    if (jsonResponse['resp'] == true) {
+      // Check if the "listAddresses" field is not null and is a non-empty array
+      if (jsonResponse['listAddresses'] != null && jsonResponse['listAddresses'] is List) {
+        return List<ListAddress>.from(jsonResponse['listAddresses'].map((x) => ListAddress.fromJson(x)));
+      } else {
+        // If the "listAddresses" field is null or not a List, return an empty list
+        return [];
+      }
+    } else {
+      // If the API response is not successful, return an empty list
+      return [];
+    }
   }
+
 
 
   Future<ResponseDefault> deleteStreetAddress(String idAddress) async {

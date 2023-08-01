@@ -8,6 +8,8 @@ import 'package:restaurant/presentation/screens/client/client_home_screen.dart';
 import 'package:restaurant/presentation/screens/delivery/delivery_home_screen.dart';
 import 'package:restaurant/presentation/themes/colors_frave.dart';
 
+import '../partner/partner_home_screen.dart';
+
 class SelectRoleScreen extends StatelessWidget {
 
   @override
@@ -48,6 +50,14 @@ class SelectRoleScreen extends StatelessWidget {
                 color1: Color(0xffFE6488).withOpacity(.2),
                 color2: Colors.amber.withOpacity(.1),
                 onPressed: () => Navigator.pushReplacement(context, routeFrave(page: ClientHomeScreen())),
+              ) : const SizedBox() ,
+              (authBloc.user!.rolId == 1 || authBloc.user!.rolId == 4 )
+                  ? _BtnRol(
+                svg: 'Assets/svg/bussiness-man.svg',
+                text: 'Delivery Partner',
+                color1: Color(0xffFE6488).withOpacity(.2),
+                color2: Colors.amber.withOpacity(.1),
+                onPressed: () => Navigator.pushReplacement(context, routeFrave(page: PartnerHomeScreen())),
               ) : const SizedBox() ,
               (authBloc.user!.rolId == 1 || authBloc.user!.rolId == 3 ) 
                 ? _BtnRol(

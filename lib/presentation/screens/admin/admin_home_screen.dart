@@ -4,6 +4,7 @@ import 'package:restaurant/domain/bloc/blocs.dart';
 import 'package:restaurant/presentation/components/components.dart';
 import 'package:restaurant/presentation/helpers/helpers.dart';
 import 'package:restaurant/presentation/screens/admin/category/categories_admin_screen.dart';
+import 'package:restaurant/presentation/screens/admin/deliver%20partner/list_delivery_partners_screen.dart';
 import 'package:restaurant/presentation/screens/admin/delivery/list_deliverys_screen.dart';
 import 'package:restaurant/presentation/screens/admin/orders_admin/orders_admin_screen.dart';
 import 'package:restaurant/presentation/screens/admin/products/list_products_screen.dart';
@@ -92,7 +93,7 @@ class AdminHomeScreen extends StatelessWidget {
                 colorIcon: 0xff051E2F,
               ),
               const SizedBox(height: 15.0),
-              const TextCustom(text: 'Restaurant', color: Colors.grey),
+              const TextCustom(text: 'Med-X Logistic', color: Colors.grey),
               const SizedBox(height: 10.0),
               ItemAccount(
                 text: 'Categories',
@@ -109,7 +110,14 @@ class AdminHomeScreen extends StatelessWidget {
                     context, routeFrave(page: ListProductsScreen())),
               ),
               ItemAccount(
-                text: 'Delivery',
+                text: 'Delivery Partner',
+                icon: Icons.delivery_dining_rounded,
+                colorIcon: 0xff469CD7,
+                onPressed: () => Navigator.push(
+                    context, routeFrave(page: ListDeliveryPartnersScreen())),
+              ),
+              ItemAccount(
+                text: 'Delivery Agent',
                 icon: Icons.delivery_dining_rounded,
                 colorIcon: 0xff469CD7,
                 onPressed: () => Navigator.push(

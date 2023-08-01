@@ -84,21 +84,40 @@ class _AddStreetAddressScreenState extends State<AddStreetAddressScreen> {
               child: const TextCustom(text: 'Cancel', color: ColorsFrave.primaryColor, fontSize: 17 )
             ),
             actions: [
+              // TextButton(
+              //   onPressed: () async {
+              //     if( _keyForm.currentState!.validate() ){
+              //       userBloc.add(
+              //         OnAddNewAddressEvent(
+              //           _streetAddressController.text.trim(),
+              //           myLocationBloc.state.addressName,
+              //           LatLng(fixedLatitude, fixedLongitude),
+              //           // myLocationBloc.state.locationCentral!
+              //         )
+              //       );
+              //     }
+              //   },
+              //   child: const TextCustom(text: 'Save', color: ColorsFrave.primaryColor, fontSize: 17 )
+              // ),
+
               TextButton(
-                onPressed: () async {
-                  if( _keyForm.currentState!.validate() ){
-                    userBloc.add( 
-                      OnAddNewAddressEvent( 
-                        _streetAddressController.text.trim(), 
-                        myLocationBloc.state.addressName,
-                        LatLng(fixedLatitude, fixedLongitude),
-                        // myLocationBloc.state.locationCentral!
-                      )
-                    );
-                  }
-                }, 
-                child: const TextCustom(text: 'Save', color: ColorsFrave.primaryColor, fontSize: 17 )
+                  onPressed: () async {
+                    if (_keyForm.currentState!.validate()) {
+                      final street = _streetAddressController.text.trim();
+                      final reference = myLocationBloc.state.addressName;
+                      final location = LatLng(fixedLatitude, fixedLongitude);
+
+                      if (street.isNotEmpty && reference.isNotEmpty) {
+                        userBloc.add(OnAddNewAddressEvent(street, reference, location));
+                      } else {
+                        // Show an error message or handle the case where data is missing.
+                      }
+                    }
+                  },
+                  child: const TextCustom(text: 'Save', color: ColorsFrave.primaryColor, fontSize: 17)
               ),
+
+
             ],
         ),
         body: SafeArea(
