@@ -61,6 +61,7 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
   Future<void> fetchStates() async {
     try {
       List<String> fetchedStates = await pincodeServices.fetchStates();
+      print('Fetched States: $fetchedStates');
       setState(() {
         states = fetchedStates;
         selectedState = states.isNotEmpty ? states[0] : '';
@@ -69,7 +70,7 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
         selectedPincodes.clear();
       });
     } catch (e) {
-      // Handle the error here
+      print('Error fetching states: $e');
     }
   }
 

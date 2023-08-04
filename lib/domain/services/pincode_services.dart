@@ -8,7 +8,7 @@ class PincodeServices {
   Future<List<String>> fetchStates() async {
     final token = await secureStorage.readToken();
     final response = await http.get(
-      Uri.parse('${Environment.endpointApi}/get-states'),
+      Uri.parse('${Environment.endpointBase}/get-states'),
       headers: {'Accept': 'application/json', 'xx-token': token!},
     );
 
@@ -25,7 +25,7 @@ class PincodeServices {
   Future<List<String>> fetchDistricts(String selectedState) async {
     final token = await secureStorage.readToken();
     final response = await http.get(
-      Uri.parse('${Environment.endpointApi}/get-districts?state=$selectedState'),
+      Uri.parse('${Environment.endpointApi}/get-districts?state=selectedState'),
       headers: {'Accept': 'application/json', 'xx-token': token!},
     );
 
@@ -40,7 +40,7 @@ class PincodeServices {
   Future<List<String>> fetchTaluks(String selectedDistrict) async {
     final token = await secureStorage.readToken();
     final response = await http.get(
-      Uri.parse('${Environment.endpointApi}/get-taluks?district=$selectedDistrict'),
+      Uri.parse('${Environment.endpointApi}/get-taluks?district=selectedDistrict'),
       headers: {'Accept': 'application/json', 'xx-token': token!},
     );
 
@@ -56,7 +56,7 @@ class PincodeServices {
 
     final token = await secureStorage.readToken();
     final response = await http.get(
-      Uri.parse('${Environment.endpointApi}/get-pincodes?taluk=$selectedTaluk'),
+      Uri.parse('${Environment.endpointApi}/get-pincodes?taluk=selectedTaluk'),
       headers: {'Accept': 'application/json', 'xx-token': token!},
     );
 
