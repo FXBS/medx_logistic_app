@@ -17,6 +17,7 @@ class PincodeServices {
       return List<String>.from(data); // Assuming the response returns a list of district names as strings.
     } else {
       throw Exception('Failed to fetch districts.');
+
     }
   }
 
@@ -55,7 +56,7 @@ class PincodeServices {
 
     final token = await secureStorage.readToken();
     final response = await http.get(
-      Uri.parse('${Environment.endpointApi}/get-pincode?taluk=$selectedTaluk'),
+      Uri.parse('${Environment.endpointApi}/get-pincodes?taluk=$selectedTaluk'),
       headers: {'Accept': 'application/json', 'xx-token': token!},
     );
 

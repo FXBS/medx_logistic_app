@@ -54,6 +54,8 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
     _passwordController = TextEditingController();
 
 
+    fetchStates();
+
   }
 
   Future<void> fetchStates() async {
