@@ -20,7 +20,8 @@ class SelectRoleScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
+          child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -70,6 +71,7 @@ class SelectRoleScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }

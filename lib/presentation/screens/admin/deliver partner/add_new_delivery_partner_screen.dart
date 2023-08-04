@@ -8,8 +8,13 @@ import 'package:restaurant/presentation/components/components.dart';
 import 'package:restaurant/presentation/helpers/helpers.dart';
 import 'package:restaurant/presentation/screens/admin/admin_home_screen.dart';
 import 'package:restaurant/presentation/themes/colors_frave.dart';
+import 'package:multi_select_flutter/multi_select_flutter.dart';
+
+import '../../../../domain/services/pincode_services.dart';
 
 class AddNewDeliveryPartnerScreen extends StatefulWidget {
+
+
 
   @override
   _AddNewDeliveryPartnerScreenState createState() => _AddNewDeliveryPartnerScreenState();
@@ -24,12 +29,18 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
 
-  List<String> states = ['State A', 'State B', 'State C']; // Replace with actual state data.
-  List<String> districts = ['District X', 'District Y', 'District Z']; // Replace with actual district data.
-  List<String> selectedPincodes = [];
+
+  List<String> states = []; // To store the list of states fetched from the backend.
+  List<String> districts = []; // To store the list of districts fetched from the backend.
+  Map<String, List<String>> taluksMap = {}; // To store taluks mapped to districts fetched from the backend.
+  Map<String, List<MultiSelectItem<String>>> pincodesMap = {}; // To store pincodes mapped to taluks fetched from the backend.
+
+
 
   String selectedState = '';
   String selectedDistrict = '';
+  String selectedTaluk = '';
+  List<String> selectedPincodes = [];
 
   final _keyForm = GlobalKey<FormState>();
 
@@ -41,6 +52,65 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
     _phoneController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+
+
+  }
+
+  Future<void> fetchStates() async {
+    try {
+      List<String> fetchedStates = await pincodeServices.fetchStates();
+      setState(() {
+        states = fetchedStates;
+        selectedState = states.isNotEmpty ? states[0] : '';
+        selectedDistrict = '';
+        selectedTaluk = '';
+        selectedPincodes.clear();
+      });
+    } catch (e) {
+      // Handle the error here
+    }
+  }
+
+
+  Future<void> fetchDistrictsForSelectedState(String selectedState) async {
+    try {
+      List<String> fetchedDistricts = await pincodeServices.fetchDistricts(selectedState);
+      setState(() {
+        districts = fetchedDistricts;
+        selectedDistrict = districts.isNotEmpty ? districts[0] : '';
+        selectedTaluk = '';
+        selectedPincodes.clear();
+      });
+    } catch (e) {
+      // Handle the error here
+    }
+  }
+
+  Future<void> fetchTaluksForSelectedDistrict(String selectedDistrict) async {
+    try {
+      List<String> fetchedTaluks = await pincodeServices.fetchTaluks(selectedDistrict);
+      setState(() {
+        taluksMap[selectedDistrict] = fetchedTaluks;
+        selectedTaluk = taluksMap[selectedDistrict]!.isNotEmpty ? taluksMap[selectedDistrict]![0] : '';
+        selectedPincodes.clear();
+      });
+    } catch (e) {
+      // Handle the error here
+    }
+  }
+
+  Future<void> fetchPincodesForSelectedTaluk(String selectedTaluk) async {
+    try {
+      List<String> fetchedPincodes = await pincodeServices.fetchPincodesForSelectedTaluk(selectedTaluk);
+      setState(() {
+        pincodesMap[selectedTaluk] = fetchedPincodes
+            .map((pincode) => MultiSelectItem(pincode, pincode))
+            .toList();
+        selectedPincodes.clear();
+      });
+    } catch (e) {
+      // Handle the error here
+    }
   }
 
   @override
@@ -75,7 +145,7 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
         if(state is SuccessUserState ){
 
           Navigator.pop(context);
-          modalSuccess(context, 'Delivery Successfully Registered',
+          modalSuccess(context, 'Delivery Partner Successfully Registered',
                   () => Navigator.pushAndRemoveUntil(context, routeFrave(page: AdminHomeScreen()), (route) => false));
           userBloc.add( OnClearPicturePathEvent());
         }
@@ -167,12 +237,14 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
               const SizedBox(height: 5.0),
               DropdownButtonFormField<String>(
                 value: selectedState,
-                onChanged: (value) {
+                onChanged: (value) async {
                   setState(() {
                     selectedState = value!;
                     selectedDistrict = '';
+                    selectedTaluk = '';
                     selectedPincodes.clear();
                   });
+                  await fetchDistrictsForSelectedState(selectedState);
                 },
                 items: states.map((state) {
                   return DropdownMenuItem<String>(
@@ -192,11 +264,13 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
               const SizedBox(height: 5.0),
               DropdownButtonFormField<String>(
                 value: selectedDistrict,
-                onChanged: (value) {
+                onChanged: (value) async {
                   setState(() {
                     selectedDistrict = value!;
+                    selectedTaluk = '';
                     selectedPincodes.clear();
                   });
+                  await fetchTaluksForSelectedDistrict(selectedDistrict);
                 },
                 items: districts.map((district) {
                   return DropdownMenuItem<String>(
@@ -212,26 +286,56 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
                 },
               ),
               const SizedBox(height: 20.0),
+              const TextCustom(text: 'Taluk'),
+              const SizedBox(height: 5.0),
+              DropdownButtonFormField<String>(
+                value: selectedTaluk,
+                onChanged: (value) {
+                  setState(() {
+                    selectedTaluk = value!;
+                    selectedPincodes.clear();
+                  });
+                },
+                items: _getTaluksForSelectedDistrict(selectedDistrict ).map((taluk) {
+                  return DropdownMenuItem<String>(
+                    value: taluk,
+                    child: Text(taluk),
+                  );
+                }).toList(),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select a taluk';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20.0),
               const TextCustom(text: 'Pincodes'),
               const SizedBox(height: 5.0),
               // Step 2: Create a multi-select dropdown for pincodes.
-              MultiSelectFormField(
-                dataSource: _getPincodesForSelectedDistrict(), // Implement this function to get the pincodes based on the selected district.
-                textField: 'pincode',
-                valueField: 'pincode',
-                okButtonLabel: 'OK',
-                cancelButtonLabel: 'CANCEL',
-                hintText: 'Select pincodes',
+              MultiSelectDialogField<String>(
+                items: _getPincodesForSelectedTaluk(),
+                listType: MultiSelectListType.CHIP,
                 initialValue: selectedPincodes,
-                onSaved: (value) {
-                  if (value != null) {
+                title: const Text('Pincodes'),
+                cancelText: Text('CANCEL'),
+                confirmText: Text('OK'),
+                searchable: true,
+                selectedColor: Colors.blue,
+                chipDisplay: MultiSelectChipDisplay(
+                  onTap: (value) {
                     setState(() {
-                      selectedPincodes = value.cast<String>();
+                      selectedPincodes.remove(value);
                     });
-                  }
+                  },
+                ),
+                onConfirm: (values) {
+                  setState(() {
+                    selectedPincodes = List<String>.from(values);
+                  });
                 },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
+                validator: (values) {
+                  if (values == null || values.isEmpty) {
                     return 'Please select at least one pincode';
                   }
                   return null;
@@ -257,16 +361,21 @@ class _AddNewDeliveryPartnerScreenState extends State<AddNewDeliveryPartnerScree
     );
   }
 
-  List<Map<String, dynamic>> _getPincodesForSelectedDistrict() {
-    // Implement this function to get pincodes based on the selected district.
-    // For example, you can use a map or a database to store the pincodes for each district.
-    // Return a list of maps, each containing the 'pincode' as the key and the pincode value.
-    // For example: return [{'pincode': '123456'}, {'pincode': '789012'}, ...];
-    return [{'pincode': '123456'}, {'pincode': '789012'},];
+
+
+
+
+  List<String> _getTaluksForSelectedDistrict(String selectedDistrict) {
+    return taluksMap[selectedDistrict] ?? [];
   }
+
+  List<MultiSelectItem<String>> _getPincodesForSelectedTaluk() {
+    return pincodesMap[selectedTaluk] ?? [];
+  }
+
+
+
 }
-
-
 
 class _PictureRegistre extends StatelessWidget {
 

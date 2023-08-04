@@ -11,6 +11,7 @@ import 'package:restaurant/presentation/screens/admin/delivery/add_new_delivery_
 import 'package:restaurant/presentation/themes/colors_frave.dart';
 
 import '../../partner/delivery agent/add_new_delivery_agent_screen.dart';
+import 'add_new_delivery_partner_screen.dart';
 
 class ListDeliveryPartnersScreen extends StatefulWidget {
 
@@ -62,7 +63,7 @@ class _ListDeliveryPartnersScreenState extends State<ListDeliveryPartnersScreen>
           elevation: 0,
           actions: [
             TextButton(
-                onPressed: () => Navigator.push(context, routeFrave(page: AddNewDeliveryAgentScreen())),
+                onPressed: () => Navigator.push(context, routeFrave(page: AddNewDeliveryPartnerScreen())),
                 child: const TextCustom(text: 'Add', color: ColorsFrave.primaryColor, fontSize: 17)
             )
           ],
